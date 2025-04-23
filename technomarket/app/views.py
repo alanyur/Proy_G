@@ -9,3 +9,6 @@ def galeria(request):
 
 def contacto(request):
     return render(request,'app/contacto.html')
+
+def sobre_nosotros(request):
+    return render(request, 'app/sobre_nosotros.html')
