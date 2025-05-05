@@ -32,6 +32,9 @@
                 <li>
                     <a href="{% url 'sobre_nosotros' %}">Sobre Nosotros</a>
                 </li>
+                <li>
+                    <a href="{% url 'horario' %}">Horario</a>
+                </li>
 
             </ul>
         </nav>
@@ -41,7 +44,7 @@
     {% block contenido %}
     {% endblock %}
 </div>
-<footer>
+<!-- <footer>
     <footer>
         <div class="marcas">
             <img src="{% static 'app/img/footer/apple.png'%}" alt="apple" style="width: 30px;">
@@ -54,7 +57,7 @@
             <img src="{% static 'app/img/serviciointegralicono.png'%}" alt="logo">
         </div>
     </footer>
-</footer>
+</footer> -->
 <script src="js/menu.js"></script>
 {% block js %}
 {% endblock %}

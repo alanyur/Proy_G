@@ -12,3 +12,6 @@ def contacto(request):
 
 def sobre_nosotros(request):
     return render(request, 'app/sobre_nosotros.html')
+
+def horario(request):
+    return render(request,'app/horario.html')
