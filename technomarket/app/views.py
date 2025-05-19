@@ -15,3 +15,6 @@ def sobre_nosotros(request):
 
 def horario(request):
     return render(request,'app/horario.html')
+
+def sesion(request):
+    return render(request,'app/sesion.html')
