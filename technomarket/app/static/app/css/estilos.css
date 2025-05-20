@@ -63,19 +63,45 @@ input[type=text], input[type=email], select, textarea {
 }
 
 .button {
-    padding: 5px 10px;
+    padding: 10px 20px;
     border: none;
-    color:white;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    color: white;
+    display: inline-block;
 }
 
+.button:hover {
+    transform: scale(1.05);
+}
+
+.button:active {
+    transform: scale(0.97);
+}
+
+/* Botón principal */
 .button.primary {
     background-color: #2B6CB0;
 }
 
+.button.primary:hover {
+    background-color: #2C5282;
+}
+
+/* Botón secundario */
 .button.secondary {
     background-color: #4A5568;
 }
+
+.button.secondary:hover {
+    background-color: #2D3748;
+}
+
 
 
 .contenedor_logo {
@@ -120,8 +146,8 @@ nav > ul > li > a {
 .servicios {
   flex: 0 0 60%; /* Mantén el ancho que ocupa */
   display: grid;
-  grid-template-columns: 1fr 1fr; /* 2 columnas iguales */
-  gap: 15px; /* espacio entre servicios */
+  grid-template-columns: 1fr 1fr 1fr 1fr; /* 2 columnas iguales */
+  gap: 25px; /* espacio entre servicios */
   align-items: start; /* para que no estiren verticalmente */
 }
 
@@ -140,9 +166,24 @@ nav > ul > li > a {
 
 
 .servicios .servicio {
-  width: 100%; /* que cada servicio ocupe el ancho de su grid cell */
-  margin-top: 15px;
-  animation: animacion_servicio_desktop 0.5s;
+  background-color: #2D3748;  /* Azul agradable */
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.12);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-size: 14px;
+  width: 110%; /* más angosto dentro de su celda */
+  margin: auto;
+    height: 320px; /* fija una altura mínima */
+  box-sizing: border-box;
+    overflow: hidden;
+
 }
 
 
@@ -150,6 +191,11 @@ nav > ul > li > a {
     width: 80%;
     height: 200px;
     object-fit: cover;
+}
+
+.servicios .servicio:hover {
+  background-color: #1A4A7A;
+  transform: scale(1.02);
 }
 
 .servicios .servicio .contenedor_servicio {
@@ -173,40 +219,30 @@ nav > ul > li > a {
 /*FOOTER*/
 
 footer {
-    width: 100%;
-    height: 300px;
-    background-color: #2D3748;
+  position: static; /* o absolute */
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  background-color: #2D3748;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+  box-sizing: border-box;
+  z-index: 1000;
 }
 
-footer .marcas {
-    width: 100%;
-    height: 100px;
-    background-color: #4A5568;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+
+.footer-content {
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
-footer .marcas img {
-    width: 50px;
-    border-radius: 0;  /* No aplica borde redondeado */
-    transition: none;   /* Sin animación */
-    box-shadow: none;
+
+.footer-logo {
+  width: 80px;
+  margin-bottom: 15px;
 }
 
-footer .logo_footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height:calc(100% - 100px);
-}
-
-footer .logo_footer img {
-    width: 100px;
-    border-radius: 0;  /* No aplica borde redondeado */
-    transition: none;   /* Sin animación */
-    box-shadow: none;
-}
 
 .menu {
     width: 40px;
