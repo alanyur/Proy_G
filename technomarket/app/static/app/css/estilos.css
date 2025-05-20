@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
 * {
     margin:0;
@@ -6,9 +7,20 @@
 
 body {
     background-color: #EDF2F7;
-    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif; /* Cambiado aquí */
+}
+h1 {
+    font-size: 36px;
 }
 
+h2 {
+    font-size: 24px;
+}
+
+nav > ul > li > a {
+    font-size: 16px;
+}
 
 header {
     width: 100%;
@@ -142,6 +154,7 @@ nav > ul > li > a {
 
 .productos .producto .detalles {
     padding: 5px;
+    font-size: 14px;
 }
 
 
