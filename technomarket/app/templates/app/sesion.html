@@ -1,6 +1,10 @@
 {% extends 'app/base.html' %}
 {% load static %}
 
+{% block background_blur %}
+<!-- Sin blur en fondo para esta página -->
+{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'app/css/sesion.css' %}">
 {% endblock %}

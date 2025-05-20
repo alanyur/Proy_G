@@ -2,62 +2,50 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Servicios Integrales Spa</title>
     {% load static %}
+
     {% block css %}
     {% endblock %}
-    <link rel="stylesheet" href="{% static 'app/css/estilos.css'%}">
+
+    <link rel="stylesheet" href="{% static 'app/css/estilos.css' %}">
+
 </head>
 <body>
+{% block background_blur %}
+  <div class="background-blur"></div>
+  {% endblock %}
+
 <header id="header">
-    <img src="{% static 'app/img/menuiconwhite.png'%}" alt="menu" class="menu" id="menu">
+    <img src="{% static 'app/img/menuiconwhite.png' %}" alt="menu" class="menu" id="menu">
     <div class="contenedor_logo">
-    <a href="{% url 'home' %}">
-        <img src="{% static 'app/img/serviciointegralicono.png' %}" alt="logo" class="logo">
-    </a>
+        <a href="{% url 'home' %}">
+            <img src="{% static 'app/img/serviciointegralicono.png' %}" alt="logo" class="logo">
+        </a>
     </div>
 
     <div>
         <nav id="nav">
             <ul>
-                <li>
-                    <a href="{% url 'contacto' %}">Contacto</a>
-                </li>
-                <li>
-                    <a href="{% url 'galeria' %}">Galería</a>
-                </li>
-                <li>
-                    <a href="{% url 'horario' %}">Horario</a>
-                </li>
-                <li>
-                    <a href="{% url 'sesion' %}">Inicia sesión</a>
-                </li>
-
+                <li><a href="{% url 'contacto' %}">Contacto</a></li>
+                <li><a href="{% url 'galeria' %}">Galería</a></li>
+                <li><a href="{% url 'horario' %}">Horario</a></li>
+                <li><a href="{% url 'sesion' %}">Inicia sesión</a></li>
             </ul>
         </nav>
     </div>
 </header>
+
 <div id="contenido">
     {% block contenido %}
     {% endblock %}
 </div>
-<!-- <footer>
-    <footer>
-        <div class="marcas">
-            <img src="{% static 'app/img/footer/apple.png'%}" alt="apple" style="width: 30px;">
-            <img src="{% static 'app/img/footer/lenovo.png'%}" alt="lenovo">
-            <img src="{% static 'app/img/footer/microsoft.png'%}" alt="microsoft">
-            <img src="{% static 'app/img/footer/samsung.png'%}" alt="samsung">
-            <img src="{% static 'app/img/footer/xiaomi.png'%}" alt="xiaomi">
-        </div>
-        <div class="logo_footer">
-            <img src="{% static 'app/img/serviciointegralicono.png'%}" alt="logo">
-        </div>
-    </footer>
-</footer> -->
-<script src="js/menu.js"></script>
+
+<script src="{% static 'app/js/menu.js' %}"></script>
+
 {% block js %}
 {% endblock %}
 </body>
