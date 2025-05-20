@@ -1,0 +1,16 @@
+.contenido-principal {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.servicios {
+  flex: 3;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* dos columnas para los servicios */
+  gap: 1.5rem;
+}
+
+.galeria {
+  flex: 2;
+}

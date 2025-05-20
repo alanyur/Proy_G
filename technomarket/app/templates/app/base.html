@@ -14,15 +14,14 @@
 <header id="header">
     <img src="{% static 'app/img/menuiconwhite.png'%}" alt="menu" class="menu" id="menu">
     <div class="contenedor_logo">
+    <a href="{% url 'home' %}">
         <img src="{% static 'app/img/serviciointegralicono.png' %}" alt="logo" class="logo">
-
+    </a>
     </div>
+
     <div>
         <nav id="nav">
             <ul>
-                <li>
-                    <a href="{% url 'home' %}">Inicio</a>
-                </li>
                 <li>
                     <a href="{% url 'contacto' %}">Contacto</a>
                 </li>

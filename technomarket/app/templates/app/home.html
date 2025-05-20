@@ -1,87 +1,137 @@
 {% extends 'app/base.html' %}
-
 {% load static %}
 
-{% block contenido %}
-
-
-<div class="productos">
-<div class="producto" onclick="location.href='contacto'" style="cursor: pointer;">        <div class="contenedor">
-            <img src="{% static 'app/img/productos/climatizacion.png' %}" alt="yoga">
-        </div>
-
-        <div class="detalles">
-            <h2>Climatización</h2>
-        </div>
-    </div>
-
-
-<div class="producto" onclick="location.href='contacto'" style="cursor: pointer;">        <div class="contenedor">
-            <img src="{% static 'app/img/productos/redes-de-incendio.png'%}" alt="yoga">
-        </div>
-
-        <div class="detalles">
-            <h2>Redes de Incendio</h2>
-        </div>
-    </div>
-
-<div class="producto" onclick="location.href='contacto'" style="cursor: pointer;">        <div class="contenedor">
-            <img src="{% static 'app/img/productos/soldaduras.png'%}" alt="tablet">
-        </div>
-
-        <div class="detalles">
-            <h2>Soldaduras</h2>
-        </div>
-    </div>
-
-<div class="producto" onclick="location.href='contacto'" style="cursor: pointer;">        <div class="contenedor">
-            <img src="{% static 'app/img/productos/calefaccion.png'%}" alt="s9">
-        </div>
-
-        <div class="detalles">
-            <h2>Calefacción Pellet</h2>
-        </div>
-    </div>
-
-<div class="producto" onclick="location.href='contacto'" style="cursor: pointer;">        <div class="contenedor">
-            <img src="{% static 'app/img/productos/obras-menores.png'%}" alt="macbook">
-        </div>
-
-        <div class="detalles">
-            <h2>Obras Menores</h2>
-        </div>
-    </div>
-
-<div class="producto" onclick="location.href='contacto'" style="cursor: pointer;">        <div class="contenedor">
-            <img src="{% static 'app/img/productos/cubiertas.png'%}" alt="macbook">
-        </div>
-
-        <div class="detalles">
-            <h2>Cubiertas</h2>
-        </div>
-    </div>
-
-<div class="producto" onclick="location.href='contacto'" style="cursor: pointer;">        <div class="contenedor">
-            <img src="{% static 'app/img/productos/hojalateria.png'%}" alt="macbook">
-        </div>
-
-        <div class="detalles">
-            <h2>Hojalateria</h2>
-        </div>
-    </div>
-
-<div class="producto" onclick="location.href='contacto'" style="cursor: pointer;">        <div class="contenedor">
-            <img src="{% static 'app/img/productos/andamios.png'%}" alt="macbook">
-        </div>
-
-        <div class="detalles">
-            <h2>Arriendo Andamios</h2>
-        </div>
-    </div>
-
-</div>
-
-
-
+{% block css %}
+<link rel="stylesheet" href="{% static 'app/css/galeria.css' %}">
 {% endblock %}
 
+{% block contenido %}
+<div class="contenido-principal">
+
+  <!-- Sección servicios (3/5 izquierda) -->
+  <div class="servicios">
+    <div class="servicio" onclick="location.href='contacto'">
+      <div class="contenedor_servicio">
+        <img src="{% static 'app/img/servicios/climatizacion.png' %}" alt="climatizacion">
+      </div>
+      <div class="detalles">
+        <h2>Climatización</h2>
+      </div>
+    </div>
+
+    <div class="servicio" onclick="location.href='contacto'">
+    <div class="contenedor_servicio">
+      <img src="{% static 'app/img/servicios/redes-de-incendio.png' %}" alt="redes de incendio">
+    </div>
+    <div class="detalles">
+      <h2>Redes de incendio</h2>
+    </div>
+    </div>
+
+      <div class="servicio" onclick="location.href='contacto'">
+      <div class="contenedor_servicio">
+        <img src="{% static 'app/img/servicios/andamios.png' %}" alt="andamios">
+      </div>
+      <div class="detalles">
+        <h2>Andamios</h2>
+      </div>
+    </div>
+
+      <div class="servicio" onclick="location.href='contacto'">
+      <div class="contenedor_servicio">
+        <img src="{% static 'app/img/servicios/calefaccion.png' %}" alt="calefacción">
+      </div>
+      <div class="detalles">
+        <h2>Calefacción</h2>
+      </div>
+    </div>
+
+      <div class="servicio" onclick="location.href='contacto'">
+      <div class="contenedor_servicio">
+        <img src="{% static 'app/img/servicios/cubiertas.png' %}" alt="cubiertas">
+      </div>
+      <div class="detalles">
+        <h2>Cubiertas</h2>
+      </div>
+    </div>
+
+      <div class="servicio" onclick="location.href='contacto'">
+      <div class="contenedor_servicio">
+        <img src="{% static 'app/img/servicios/hojalateria.png' %}" alt="hojalateria">
+      </div>
+      <div class="detalles">
+        <h2>Hojalateria</h2>
+      </div>
+    </div>
+
+      <div class="servicio" onclick="location.href='contacto'">
+      <div class="contenedor_servicio">
+        <img src="{% static 'app/img/servicios/obras-menores.png' %}" alt="obras-menores">
+      </div>
+      <div class="detalles">
+        <h2>Obras Menores</h2>
+      </div>
+    </div>
+
+      <div class="servicio" onclick="location.href='contacto'">
+      <div class="contenedor_servicio">
+        <img src="{% static 'app/img/servicios/soldaduras.png' %}" alt="soldaduras">
+      </div>
+      <div class="detalles">
+        <h2>Soldaduras</h2>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Sección galería (2/5 derecha) -->
+  <div class="galeria">
+    <div class="gallery-grid">
+
+      <div class="gallery-item">
+        <a data-fancybox="gallery" href="{% static 'app/img/tienda/tienda1.jpg' %}">
+          <img src="{% static 'app/img/tienda/tienda1.jpg' %}" alt="Tienda 1" />
+          <div class="caption">Tienda 1</div>
+        </a>
+      </div>
+
+      <div class="gallery-item">
+        <a data-fancybox="gallery" href="{% static 'app/img/tienda/tienda2.jpeg' %}">
+          <img src="{% static 'app/img/tienda/tienda2.jpeg' %}" alt="Tienda 2" />
+          <div class="caption">Tienda 2</div>
+        </a>
+      </div>
+
+        <div class="gallery-item">
+        <a data-fancybox="gallery" href="{% static 'app/img/tienda/tienda3.jpg' %}">
+          <img src="{% static 'app/img/tienda/tienda3.jpg' %}" alt="Tienda 3" />
+          <div class="caption">Tienda 3</div>
+        </a>
+      </div>
+
+        <div class="gallery-item">
+        <a data-fancybox="gallery" href="{% static 'app/img/tienda/tienda4.jpg' %}">
+          <img src="{% static 'app/img/tienda/tienda4.jpg' %}" alt="Tienda 4" />
+          <div class="caption">Tienda 4</div>
+        </a>
+      </div>
+
+        <div class="gallery-item">
+        <a data-fancybox="gallery" href="{% static 'app/img/tienda/tienda5.jpg' %}">
+          <img src="{% static 'app/img/tienda/tienda5.jpg' %}" alt="Tienda 5" />
+          <div class="caption">Tienda 5</div>
+        </a>
+      </div>
+
+        <div class="gallery-item">
+        <a data-fancybox="gallery" href="{% static 'app/img/tienda/tienda6.jpg' %}">
+          <img src="{% static 'app/img/tienda/tienda6.jpg' %}" alt="Tienda 6" />
+          <div class="caption">Tienda 6</div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+{% endblock %}

@@ -43,18 +43,6 @@ img:hover {
     transform: scale(1.05); /* Aumenta ligeramente el tamaño de la imagen */
 }
 
-.galeria {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 30px;
-}
-
-.galeria img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
 
 input[type=text], input[type=email], select, textarea {
     width: 100%;
@@ -116,12 +104,16 @@ nav > ul > li > a {
     min-height: 80vh;
 }
 
-.productos {
-    display: flex;
-    flex-wrap: wrap;
+.servicios {
+  flex: 0 0 60%; /* Mantén el ancho que ocupa */
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 columnas iguales */
+  gap: 15px; /* espacio entre servicios */
+  align-items: start; /* para que no estiren verticalmente */
 }
 
-@keyframes animacion_producto_desktop {
+
+@keyframes animacion_servicio_desktop {
     0% {
         transform: rotate(-20deg);
         opacity: 0;
@@ -134,28 +126,35 @@ nav > ul > li > a {
 }
 
 
-.productos .producto {
-    width: 25%;
-    margin-top: 15px;
-    animation: animacion_producto_desktop 0.5s;
+.servicios .servicio {
+  width: 100%; /* que cada servicio ocupe el ancho de su grid cell */
+  margin-top: 15px;
+  animation: animacion_servicio_desktop 0.5s;
 }
 
-.productos .producto img {
+
+.servicios .servicio img {
     width: 80%;
     height: 200px;
     object-fit: cover;
 }
 
-.productos .producto .contenedor_producto {
-    background-color: white;
+.servicios .servicio .contenedor_servicio {
+    background-color: transparent;
     width: 80%;
     margin:auto;
 }
 
-.productos .producto .detalles {
+.servicios .servicio .detalles {
     padding: 5px;
     font-size: 14px;
 }
+
+.contenido-principal {
+  display: flex;
+  gap: 20px; /* espacio entre servicios y galería */
+}
+
 
 
 /*FOOTER*/
@@ -219,11 +218,7 @@ input.error {
 
 @media(max-width:1024px) {
 
-    .galeria {
-        grid-template-columns:1fr 1fr;
-    }
-
-    @keyframes animacion_producto_tablet {
+    @keyframes animacion_servicio_tablet {
 
         0% {
             opacity: 0;/*0-1*/
@@ -235,9 +230,9 @@ input.error {
 
     }
 
-    .productos .producto {
+    .servicios .servicio {
         width: 50%;
-        animation: animacion_producto_tablet 2s;
+        animation: animacion_servicio_tablet 2s;
     }
 
 }
@@ -245,15 +240,11 @@ input.error {
 /*SMARTPHONE*/
 @media(max-width:480px) {
 
-    .galeria {
-        grid-template-columns: 1fr;
-    }
-
     .menu {
         display: block;
     }
 
-    @keyframes animacion_producto_smartphone {
+    @keyframes animacion_servicio_smartphone {
 
         0% {
             transform: scale(0.1);/*0 - 1*/
@@ -269,9 +260,9 @@ input.error {
     }
 
 
-    .productos .producto {
+    .servicios .servicio {
         width: 100%;
-        animation: animacion_producto_smartphone 0.8s;
+        animation: animacion_servicio_smartphone 0.8s;
     }
 
     header {
