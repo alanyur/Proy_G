@@ -74,6 +74,8 @@ input[type=text], input[type=email], select, textarea {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     color: white;
     display: inline-block;
+    min-width: 120px;
+    min-height: 45px;
 }
 
 .button:hover {
@@ -144,12 +146,15 @@ nav > ul > li > a {
 }
 
 .servicios {
-  flex: 0 0 60%; /* Mantén el ancho que ocupa */
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr; /* 2 columnas iguales */
-  gap: 25px; /* espacio entre servicios */
-  align-items: start; /* para que no estiren verticalmente */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
 }
+
+
 
 
 @keyframes animacion_servicio_desktop {
@@ -166,32 +171,32 @@ nav > ul > li > a {
 
 
 .servicios .servicio {
-  background-color: #2D3748;  /* Azul agradable */
+  width: 100%;
+  max-width: 300px;
+  background-color: #2D3748;
   color: white;
   border-radius: 10px;
   padding: 10px;
-  cursor: pointer;
   box-shadow: 0 3px 6px rgba(0,0,0,0.12);
   transition: background-color 0.3s ease, transform 0.2s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  font-size: 14px;
-  width: 110%; /* más angosto dentro de su celda */
-  margin: auto;
-    height: 320px; /* fija una altura mínima */
+  justify-content: space-between;
+  height: 320px;
   box-sizing: border-box;
-    overflow: hidden;
-
+  overflow: hidden;
 }
+
+
 
 
 .servicios .servicio img {
-    width: 80%;
-    height: 200px;
-    object-fit: cover;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
 }
+
 
 .servicios .servicio:hover {
   background-color: #1A4A7A;
@@ -211,11 +216,14 @@ nav > ul > li > a {
 
 .contenido-principal {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 30px;
   padding: 20px;
   max-width: 1400px;
   margin: 20px auto;
 }
+
 
 
 
