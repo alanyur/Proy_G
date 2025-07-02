@@ -1,27 +1,29 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+from django.contrib.auth import get_user_model
 from .forms import LoginForm
 from django.http import HttpResponse
 
-# Create your views here.
+User = get_user_model()  # ahora usas tu modelo Usuario
+
 def home(request):
-    return render(request,'app/home.html')
+    return render(request, 'app/home.html')
 
 def galeria(request):
-    return render(request,'app/galeria.html')
+    return render(request, 'app/galeria.html')
 
 def contacto(request):
-    return render(request,'app/contacto.html')
+    return render(request, 'app/contacto.html')
 
 def horario(request):
-    return render(request,'app/horario.html')
+    return render(request, 'app/horario.html')
 
 def sesion(request):
-    return render(request,'app/sesion.html')
+    return render(request, 'app/sesion.html')
 
 def registro(request):
-    return render(request,'app/registro.html')
+    return render(request, 'app/registro.html')
 
 def user_login(request):
     if request.method == 'POST':
@@ -30,33 +32,30 @@ def user_login(request):
             cd = form.cleaned_data
             user = authenticate(request,
                                 username=cd['username'],
-                                password=cd['passsword'])
+                                password=cd['password'])
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponse('Authenticated succes') 
+                    return redirect('home')  # ✅ redirige al home.html
                 else:
-                    return HttpResponse('Disabled account')
+                    messages.error(request, 'Cuenta desactivada')
             else:
-                return HttpResponse('Invalid login')
+                messages.error(request, 'Usuario o contraseña incorrectos')
     else:
         form = LoginForm()
-    return render(request, 'login.html', {'form':form})            
+    return render(request, 'app/sesion.html', {'form': form})
 
 def registro_succes(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
-        
+
         try:
             user = User.objects.create_user(username=username, email=email, password=password)
-            login(request, user)  # Autentica automáticamente
-            return redirect('home')  # Redirige a home tras éxito
+            login(request, user)  # Loguea automáticamente tras crear cuenta
+            return redirect('home.html')
         except Exception as e:
-            return render(request, 'app/registro.html', {
-                'error': f'Error: {str(e)}'
-            })
-    
+            messages.error(request, f'Error al registrar usuario: {str(e)}')
+
     return render(request, 'app/registro.html')
-    

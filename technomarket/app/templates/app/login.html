@@ -5,26 +5,38 @@
     <meta charset="UTF-8">
     <title>Login Page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="preconnect" href="{% static 'app/css/style.css' %}">
-</html>
+    <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+</head>
+<body>
 <div class="container">
 	<div class="screen">
 		<div class="screen__content">
-			<form class="login"method="post">
-                {%csrf_token %}
+
+			<!-- Bloque de errores -->
+			{% if messages %}
+				<div class="error-messages">
+					{% for message in messages %}
+						<p style="color: red; text-align: center; margin-bottom: 10px;">{{ message }}</p>
+					{% endfor %}
+				</div>
+			{% endif %}
+
+			<form class="login" method="post">
+                {% csrf_token %}
 				<div class="login__field">
 					<i class="login__icon fas fa-user"></i>
-                    {{form.username}}
+                    {{ form.username }}
                 </div>
 				<div class="login__field">
 					<i class="login__icon fas fa-lock"></i>
-                    {{form.password}}
+                    {{ form.password }}
                 </div>
 				<button class="button login__submit">
 					<span class="button__text">Log In Now</span>
 					<i class="button__icon fas fa-chevron-right"></i>
-				</button>				
+				</button>
 			</form>
+
 			<div class="social-login">
 				<h3>log in via</h3>
 				<div class="social-icons">
@@ -33,12 +45,16 @@
 					<a href="#" class="social-login__icon fab fa-twitter"></a>
 				</div>
 			</div>
+
 		</div>
+
 		<div class="screen__background">
 			<span class="screen__background__shape screen__background__shape4"></span>
-			<span class="screen__background__shape screen__background__shape3"></span>		
+			<span class="screen__background__shape screen__background__shape3"></span>
 			<span class="screen__background__shape screen__background__shape2"></span>
 			<span class="screen__background__shape screen__background__shape1"></span>
-		</div>		
+		</div>
 	</div>
 </div>
+</body>
+</html>
