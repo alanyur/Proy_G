@@ -36,7 +36,17 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return redirect('home')  # ✅ redirige al home.html
+
+                    # 🔍 Verifica el rol
+                    if user.rol == 'admin':
+                        messages.success(request, 'Bienvenido administrador.')
+                        return redirect('home')  # o redirect('admin_panel') si lo separas
+                    elif user.rol == 'trabajador':
+                        messages.success(request, 'Bienvenido trabajador.')
+                        return redirect('home')  # o alguna vista de gestión de horario
+                    elif user.rol == 'cliente':
+                        messages.success(request, 'Bienvenido cliente.')
+                        return redirect('home')
                 else:
                     messages.error(request, 'Cuenta desactivada')
             else:
@@ -45,17 +55,32 @@ def user_login(request):
         form = LoginForm()
     return render(request, 'app/sesion.html', {'form': form})
 
+
 def registro_succes(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
+        username = request.POST.get('username')  # Rut
         email = request.POST.get('email')
         password = request.POST.get('password')
+        nombre = request.POST.get('first_name')
+        apellido = request.POST.get('last_name')
+        telefono = request.POST.get('telefono')
+        fecha_nacimiento = request.POST.get('fecha_nacimiento')
 
         try:
-            user = User.objects.create_user(username=username, email=email, password=password)
+            user = User.objects.create_user(
+                username=username,
+                email=email,
+                password=password,
+                first_name=nombre,
+                last_name=apellido,
+                telefono=telefono,
+                fecha_nacimiento=fecha_nacimiento,
+                rol='cliente'
+            )
             messages.success(request, 'Usuario registrado correctamente. Ahora inicia sesión.')
             return redirect('sesion')
         except Exception as e:
             messages.error(request, f'Error al registrar usuario: {str(e)}')
 
     return render(request, 'app/registro.html')
+
