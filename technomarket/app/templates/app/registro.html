@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block background_blur %}
-<!-- Sin blur en fondo para esta página -->
 {% endblock %}
 
 {% block css %}
@@ -11,26 +10,38 @@
 
 {% block contenido %}
 <div class="wrapper">
-        <form method="POST" action="{% url 'registro' %}"></form>
-        {% csrf_token %}
+        <form method="POST" action="{% url 'registro' %}">
+  {% csrf_token %}
 
   {% if messages %}
-    {% for message in messages %}
-      <p style="color: red; text-align: center;">{{ message }}</p>
-    {% endfor %}
-  {% endif %}
+  {% for message in messages %}
+    <p style="text-align: center; color:
+      {% if message.tags == 'error' %}
+        red
+      {% elif message.tags == 'success' %}
+        green
+      {% else %}
+        black
+      {% endif %}
+    ">{{ message }}</p>
+  {% endfor %}
+{% endif %}
 
-        <h1>Registrate</h1>
-        <div class="input-box">
-            <input type="text" name="username" placeholder="Nombre" required>
-        </div>
-        <div class="input-box">
-            <input type="text" name="email" placeholder="Correo" required>
-        </div>
-        <div class="input-box">
-            <input type="password" name="password" placeholder="Contraseña" required>
-        </div>
-        <button type="submit" class="btn">Registrarse</button>
-    </form>
+
+    <h1>Registrate</h1>
+
+  <div class="input-box">
+      <input type="text" name="username" placeholder="Nombre" required>
+  </div>
+  <div class="input-box">
+      <input type="text" name="email" placeholder="Correo" required>
+  </div>
+  <div class="input-box">
+      <input type="password" name="password" placeholder="Contraseña" required>
+  </div>
+
+  <button type="submit" class="btn">Registrarse</button>
+</form>
+
 </div>
 {% endblock %}

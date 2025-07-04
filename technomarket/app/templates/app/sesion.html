@@ -18,12 +18,19 @@
 
         <!-- Bloque de errores -->
         {% if messages %}
-            <div class="error-messages">
-                {% for message in messages %}
-                    <p style="color: red; text-align: center; margin-bottom: 10px;">{{ message }}</p>
-                {% endfor %}
-            </div>
+            {% for message in messages %}
+                <p style="text-align: center; color:
+                {% if message.tags == 'error' %}
+                    red
+                {% elif message.tags == 'success' %}
+                    green
+                {% else %}
+                    black
+                {% endif %}
+                ">{{ message }}</p>
+            {% endfor %}
         {% endif %}
+
 
         <div class="input-box">
             {{ form.username }}

@@ -53,8 +53,8 @@ def registro_succes(request):
 
         try:
             user = User.objects.create_user(username=username, email=email, password=password)
-            login(request, user)  # Loguea automáticamente tras crear cuenta
-            return redirect('home.html')
+            messages.success(request, 'Usuario registrado correctamente. Ahora inicia sesión.')
+            return redirect('sesion')
         except Exception as e:
             messages.error(request, f'Error al registrar usuario: {str(e)}')
 
