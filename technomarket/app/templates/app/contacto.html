@@ -1,29 +1,22 @@
-{%extends 'app/base.html'%}
+{% extends 'app/base.html' %}
 
 {% block contenido %}
+<form method="post" id="formulario_contacto">
+    {% csrf_token %}
 
-    <form action="" method="post" id="formulario_contacto">
-        <label for="">Nombre</label>
-        <input type="text" id="nombre" name="nombre">
-        <br>
-        <label for="">Correo electrónico</label>
-        <input type="email" name="email" id="email">
-        <br>
-        <label for="">Tipo solicitud</label>
-        <select name="tipo_solicitud" id="tipo_solicitud">
-            <option value="">Seleccionar</option>
-            <option value="">Reclamo</option>
-            <option value="">Sugerencia</option>
-        </select>
-        <br>
-        <label for="">Mensaje</label>
-        <textarea name="mensaje" id="mensaje" cols="30" rows="10"></textarea>
-        <br>
-        <input type="checkbox" name="avisos" id="avisos">
-        <label for="">¿Desea recibir sugerencia/avisos</label>
-        <br>
-        <button type="reset">Limpiar</button>
-        <button type="button" id="guardar">Guardar</button>
-    </form>
+    <label>Nombre</label>
+    <input type="text" name="nombre" value="{{ usuario.first_name }} {{ usuario.last_name }}" readonly>
 
+    <label>Correo electrónico</label>
+    <input type="email" name="email" value="{{ usuario.email }}" readonly>
+
+    <label>Servicio</label>
+    <input type="text" name="servicio" value="{{ servicio.nombre }}" readonly>
+
+    <label>Mensaje</label>
+    <textarea name="mensaje" rows="5" required></textarea>
+
+    <br>
+    <button type="submit">Enviar solicitud</button>
+</form>
 {% endblock %}

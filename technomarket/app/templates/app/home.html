@@ -8,80 +8,18 @@
 {% block contenido %}
 <div class="contenido-principal">
 
-  <!-- Sección servicios (3/5 izquierda) -->
+  <!-- Sección servicios -->
   <div class="servicios">
-    <div class="servicio" onclick="location.href='contacto'">
+    {% for servicio in servicios %}
+    <div class="servicio" onclick="location.href='{% url 'contacto' servicio.id %}'">
       <div class="contenedor_servicio">
-        <img src="{% static 'app/img/servicios/climatizacion.png' %}" alt="climatizacion">
+        <img src="{% static 'app/img/servicios/' %}{{ servicio.nombre|slugify }}.png" alt="{{ servicio.nombre }}">
       </div>
       <div class="detalles">
-        <h2>Climatización</h2>
+        <h2>{{ servicio.nombre }}</h2>
       </div>
     </div>
-
-    <div class="servicio" onclick="location.href='contacto'">
-    <div class="contenedor_servicio">
-      <img src="{% static 'app/img/servicios/redes-de-incendio.png' %}" alt="redes de incendio">
-    </div>
-    <div class="detalles">
-      <h2>Redes Incendio</h2>
-    </div>
-    </div>
-
-      <div class="servicio" onclick="location.href='contacto'">
-      <div class="contenedor_servicio">
-        <img src="{% static 'app/img/servicios/andamios.png' %}" alt="andamios">
-      </div>
-      <div class="detalles">
-        <h2>Andamios</h2>
-      </div>
-    </div>
-
-      <div class="servicio" onclick="location.href='contacto'">
-      <div class="contenedor_servicio">
-        <img src="{% static 'app/img/servicios/calefaccion.png' %}" alt="calefacción">
-      </div>
-      <div class="detalles">
-        <h2>Calefacción</h2>
-      </div>
-    </div>
-
-      <div class="servicio" onclick="location.href='contacto'">
-      <div class="contenedor_servicio">
-        <img src="{% static 'app/img/servicios/cubiertas.png' %}" alt="cubiertas">
-      </div>
-      <div class="detalles">
-        <h2>Cubiertas</h2>
-      </div>
-    </div>
-
-      <div class="servicio" onclick="location.href='contacto'">
-      <div class="contenedor_servicio">
-        <img src="{% static 'app/img/servicios/hojalateria.png' %}" alt="hojalateria">
-      </div>
-      <div class="detalles">
-        <h2>Hojalateria</h2>
-      </div>
-    </div>
-
-      <div class="servicio" onclick="location.href='contacto'">
-      <div class="contenedor_servicio">
-        <img src="{% static 'app/img/servicios/obras-menores.png' %}" alt="obras-menores">
-      </div>
-      <div class="detalles">
-        <h2>Obras Menores</h2>
-      </div>
-    </div>
-
-      <div class="servicio" onclick="location.href='contacto'">
-      <div class="contenedor_servicio">
-        <img src="{% static 'app/img/servicios/soldaduras.png' %}" alt="soldaduras">
-      </div>
-      <div class="detalles">
-        <h2>Soldaduras</h2>
-      </div>
-    </div>
-
+    {% endfor %}
   </div>
 
   <!-- Sección galería (2/5 derecha) -->

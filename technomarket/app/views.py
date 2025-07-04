@@ -4,18 +4,35 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import get_user_model
 from .forms import LoginForm
 from django.http import HttpResponse
+from .models import Servicio
+from django.contrib.auth.decorators import login_required
 
 User = get_user_model()  # ahora usas tu modelo Usuario
 
 def home(request):
-    return render(request, 'app/home.html')
+    servicios = Servicio.objects.all()
+    return render(request, 'app/home.html', {'servicios': servicios})
 
 def galeria(request):
     return render(request, 'app/galeria.html')
 
-def contacto(request):
-    return render(request, 'app/contacto.html')
+def contacto(request, servicio_id):
+    try:
+        servicio = Servicio.objects.get(pk=servicio_id)
+    except Servicio.DoesNotExist:
+        return redirect('home')
 
+    if request.method == 'POST':
+        mensaje = request.POST.get('mensaje')
+        # Aquí podrías guardar una Solicitud, enviar email, etc.
+        # Por ahora redirigimos con mensaje de éxito
+        messages.success(request, 'Tu solicitud ha sido enviada.')
+        return redirect('home')
+
+    return render(request, 'app/contacto.html', {
+        'servicio': servicio,
+        'usuario': request.user
+    })
 def horario(request):
     return render(request, 'app/horario.html')
 
