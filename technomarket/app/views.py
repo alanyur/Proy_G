@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import get_user_model
 from .forms import LoginForm
 from django.http import HttpResponse
@@ -54,6 +54,11 @@ def user_login(request):
     else:
         form = LoginForm()
     return render(request, 'app/sesion.html', {'form': form})
+
+
+def cerrar_sesion(request):
+    logout(request)
+    return redirect('sesion')  # redirige a la vista de login
 
 
 def registro_succes(request):

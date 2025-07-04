@@ -27,14 +27,20 @@
     </div>
 
     <div>
-        <nav id="nav">
-            <ul>
-                <li><a href="{% url 'contacto' %}">Contacto</a></li>
-                <li><a href="{% url 'galeria' %}">Galería</a></li>
-                <li><a href="{% url 'horario' %}">Horario</a></li>
-                <li><a href="{% url 'sesion' %}">Inicia sesión</a></li>
-            </ul>
-        </nav>
+<nav id="nav">
+    <ul>
+        <li><a href="{% url 'contacto' %}">Contacto</a></li>
+        <li><a href="{% url 'galeria' %}">Galería</a></li>
+        <li><a href="{% url 'horario' %}">Horario</a></li>
+
+        {% if request.user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+        {% else %}
+            <li><a href="{% url 'sesion' %}">Inicia sesión</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
     </div>
 </header>
 
