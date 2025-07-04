@@ -1,10 +1,10 @@
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import get_user_model
-from .forms import LoginForm
+from .forms import LoginForm, SolicitudForm
 from django.http import HttpResponse
-from .models import Servicio
+from .models import Servicio, Solicitud
 from django.contrib.auth.decorators import login_required
 
 User = get_user_model()  # ahora usas tu modelo Usuario
@@ -17,22 +17,25 @@ def galeria(request):
     return render(request, 'app/galeria.html')
 
 def contacto(request, servicio_id):
-    try:
-        servicio = Servicio.objects.get(pk=servicio_id)
-    except Servicio.DoesNotExist:
-        return redirect('home')
+    servicio = get_object_or_404(Servicio, pk=servicio_id)
+    usuario = request.user
 
     if request.method == 'POST':
         mensaje = request.POST.get('mensaje')
-        # Aquí podrías guardar una Solicitud, enviar email, etc.
-        # Por ahora redirigimos con mensaje de éxito
-        messages.success(request, 'Tu solicitud ha sido enviada.')
+        Solicitud.objects.create(
+            cliente=usuario,
+            servicio=servicio,
+            descripcion=mensaje,
+            estado='pendiente'
+        )
+        messages.success(request, 'Solicitud enviada correctamente.')
         return redirect('home')
 
     return render(request, 'app/contacto.html', {
         'servicio': servicio,
-        'usuario': request.user
+        'usuario': usuario
     })
+
 def horario(request):
     return render(request, 'app/horario.html')
 
