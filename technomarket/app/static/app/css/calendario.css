@@ -93,3 +93,50 @@
 .date.inactive:hover{
     color: #fff;
 }
+
+.detalle-horario {
+    flex: 1;
+    min-width: 320px;
+    max-width: 600px;
+    padding: 25px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.detalle-horario h2 {
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: #333;
+    text-align: center;
+}
+
+
+.trabajador-item {
+    background-color: #ffffff;
+    padding: 12px 18px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    border-left: 5px solid #d3342ef3;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+}
+
+.trabajador-item span {
+    font-weight: 500;
+    color: #444;
+}
+
+.horario-contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding: 20px;
+    margin-top: 40px;
+}
+

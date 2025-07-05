@@ -6,6 +6,8 @@ from .forms import LoginForm, SolicitudForm
 from django.http import HttpResponse
 from .models import Servicio, Solicitud
 from django.contrib.auth.decorators import login_required
+from collections import defaultdict
+from .models import Disponibilidad
 
 User = get_user_model()  # ahora usas tu modelo Usuario
 
@@ -37,7 +39,16 @@ def contacto(request, servicio_id):
     })
 
 def horario(request):
-    return render(request, 'app/horario.html')
+    disponibilidades = defaultdict(list)
+    for d in Disponibilidad.objects.select_related("trabajador"):
+        disponibilidades[d.dia].append({
+            "trabajador": f"{d.trabajador.first_name} {d.trabajador.last_name}",
+            "inicio": d.hora_inicio.strftime("%H:%M"),
+            "fin": d.hora_fin.strftime("%H:%M"),
+        })
+    return render(request, "app/horario.html", {
+        "disponibilidades": dict(disponibilidades)
+    })
 
 def sesion(request):
     return render(request, 'app/sesion.html')
