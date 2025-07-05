@@ -46,10 +46,10 @@ class Calificacion(models.Model):
     def __str__(self):
         return f"{self.puntuacion}/5 - {self.solicitud}"
 
+# models.py
 class Disponibilidad(models.Model):
-    trabajador = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
-                                      limit_choices_to={'rol': 'trabajador'})
-    dia = models.CharField(max_length=10)  # Lunes, Martes, etc.
+    trabajador = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, limit_choices_to={'rol': 'trabajador'})
+    dia = models.CharField(max_length=10)
     hora_inicio = models.TimeField()
     hora_fin = models.TimeField()
 
