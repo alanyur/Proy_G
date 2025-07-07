@@ -250,6 +250,9 @@ nav > ul > li > a {
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   padding: 0 20px;
+    justify-items: center;
+  align-items: start;
+  text-align: center;
 }
 
 .footer-columna h3 {
