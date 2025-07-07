@@ -1,9 +1,7 @@
 {% extends 'app/base.html' %}
 {% load static %}
 
-{% block css %}
-<link rel="stylesheet" href="{% static 'app/css/galeria.css' %}">
-{% endblock %}
+
 
 {% block contenido %}
 <div class="contenido-principal">
@@ -21,56 +19,6 @@
     </div>
     {% endfor %}
   </div>
-
-  <!-- Sección galería (2/5 derecha) -->
-  <div class="galeria">
-    <div class="gallery-grid">
-
-      <div class="gallery-item">
-        <a data-fancybox="gallery" href="{% static 'app/img/tienda/tienda1.jpg' %}">
-          <img src="{% static 'app/img/tienda/tienda1.jpg' %}" alt="Tienda 1" />
-          <div class="caption">Tienda 1</div>
-        </a>
-      </div>
-
-      <div class="gallery-item">
-        <a data-fancybox="gallery" href="{% static 'app/img/tienda/tienda2.jpeg' %}">
-          <img src="{% static 'app/img/tienda/tienda2.jpeg' %}" alt="Tienda 2" />
-          <div class="caption">Tienda 2</div>
-        </a>
-      </div>
-
-        <div class="gallery-item">
-        <a data-fancybox="gallery" href="{% static 'app/img/tienda/tienda3.jpg' %}">
-          <img src="{% static 'app/img/tienda/tienda3.jpg' %}" alt="Tienda 3" />
-          <div class="caption">Tienda 3</div>
-        </a>
-      </div>
-
-        <div class="gallery-item">
-        <a data-fancybox="gallery" href="{% static 'app/img/tienda/tienda4.jpg' %}">
-          <img src="{% static 'app/img/tienda/tienda4.jpg' %}" alt="Tienda 4" />
-          <div class="caption">Tienda 4</div>
-        </a>
-      </div>
-
-        <div class="gallery-item">
-        <a data-fancybox="gallery" href="{% static 'app/img/tienda/tienda5.jpg' %}">
-          <img src="{% static 'app/img/tienda/tienda5.jpg' %}" alt="Tienda 5" />
-          <div class="caption">Tienda 5</div>
-        </a>
-      </div>
-
-        <div class="gallery-item">
-        <a data-fancybox="gallery" href="{% static 'app/img/tienda/tienda6.jpg' %}">
-          <img src="{% static 'app/img/tienda/tienda6.jpg' %}" alt="Tienda 6" />
-          <div class="caption">Tienda 6</div>
-        </a>
-      </div>
-
-    </div>
-  </div>
-
 </div>
 
     <footer class="footer-full">
