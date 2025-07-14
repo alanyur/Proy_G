@@ -1,6 +1,7 @@
 from django import forms
 from .models import Solicitud
 
+# Formulario para el inicio de sesion
 class LoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={
         'placeholder': 'User name / Email',
@@ -11,6 +12,7 @@ class LoginForm(forms.Form):
         'class': 'sesion_input'
     }))
 
+# Formulario de solicitud
 class SolicitudForm(forms.ModelForm):
     class Meta:
         model = Solicitud

@@ -11,17 +11,21 @@ from .models import Disponibilidad
 
 User = get_user_model()
 
+# Pagina principal, muestra los servicios disponibles
 def home(request):
     servicios = Servicio.objects.all()
     return render(request, 'app/home.html', {'servicios': servicios})
 
+# Pagina que muestra la galeria de trabajos realizados
 def galeria(request):
     return render(request, 'app/galeria.html')
 
+# Pagina para enviar una solicitud de servicio
 def contacto(request, servicio_id):
     servicio = get_object_or_404(Servicio, pk=servicio_id)
     usuario = request.user
 
+    # Si es post crea la solicitud
     if request.method == 'POST':
         mensaje = request.POST.get('mensaje')
         Solicitud.objects.create(
@@ -30,6 +34,8 @@ def contacto(request, servicio_id):
             descripcion=mensaje,
             estado='pendiente'
         )
+
+        # Da mensaje de exito
         messages.success(request, 'Solicitud enviada correctamente.')
         return redirect('home')
 
@@ -38,7 +44,10 @@ def contacto(request, servicio_id):
         'usuario': usuario
     })
 
+# Pagina que muestra la disponibilidad horaria de los trabajadores
 def horario(request):
+
+    # Usa un diccionario para organizar la disponpibilidad por trabajador y dia
     disponibilidades = defaultdict(list)
     for d in Disponibilidad.objects.select_related("trabajador"):
         disponibilidades[d.dia].append({
@@ -50,12 +59,15 @@ def horario(request):
         "disponibilidades": dict(disponibilidades)
     })
 
+# Pagina de inicio de sesion
 def sesion(request):
     return render(request, 'app/sesion.html')
 
+# Pagina de registro
 def registro(request):
     return render(request, 'app/registro.html')
 
+# Maneja el inicio de sesion de usuarios, redirige segun rol, da mensajes de error o exito
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -68,13 +80,13 @@ def user_login(request):
                 if user.is_active:
                     login(request, user)
 
-                    # 🔍 Verifica el rol
+                    # Redirige segun rol
                     if user.rol == 'admin':
                         messages.success(request, 'Bienvenido administrador.')
-                        return redirect('home')  # o redirect('admin_panel') si lo separas
+                        return redirect('home')
                     elif user.rol == 'trabajador':
                         messages.success(request, 'Bienvenido trabajador.')
-                        return redirect('home')  # o alguna vista de gestión de horario
+                        return redirect('home')
                     elif user.rol == 'cliente':
                         messages.success(request, 'Bienvenido cliente.')
                         return redirect('home')
@@ -86,13 +98,15 @@ def user_login(request):
         form = LoginForm()
     return render(request, 'app/sesion.html', {'form': form})
 
-
+# Cierra la sesion del usuario
 def cerrar_sesion(request):
     logout(request)
     return redirect('sesion')
 
-
+# Maneja el registro de los usuarios
 def registro_succes(request):
+
+    # Si es post crea al usuario con los datos recibidos
     if request.method == 'POST':
         username = request.POST.get('username')  # Rut
         email = request.POST.get('email')

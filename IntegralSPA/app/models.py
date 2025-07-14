@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 
+# Modelo de usuario con sus atributos
 class Usuario(AbstractUser):
     ROLES = (
         ('cliente', 'Cliente'),
@@ -20,6 +21,7 @@ class Usuario(AbstractUser):
     def __str__(self):
         return f"{self.username} ({self.rol})"
 
+# Modelo de los posibles servicios a solicitar
 class Servicio(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
@@ -27,7 +29,7 @@ class Servicio(models.Model):
     def __str__(self):
         return self.nombre
 
-
+# Modelo de una solicitud realizada por un cliente
 class Solicitud(models.Model):
     cliente = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, limit_choices_to={'rol': 'cliente'})
     servicio = models.ForeignKey(Servicio, on_delete=models.CASCADE)
@@ -38,6 +40,7 @@ class Solicitud(models.Model):
     def __str__(self):
         return f"Solicitud #{self.id} - {self.cliente.username}"
 
+# Modelo para las calificaciones de los usuarios
 class Calificacion(models.Model):
     solicitud = models.OneToOneField(Solicitud, on_delete=models.CASCADE)
     puntuacion = models.IntegerField()
@@ -46,7 +49,7 @@ class Calificacion(models.Model):
     def __str__(self):
         return f"{self.puntuacion}/5 - {self.solicitud}"
 
-# models.py
+# Modelo para la disponibilidad de os trabajadores
 class Disponibilidad(models.Model):
     trabajador = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, limit_choices_to={'rol': 'trabajador'})
     dia = models.CharField(max_length=10)
