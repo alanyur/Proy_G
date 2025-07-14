@@ -1,0 +1,84 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block background_blur %}
+<!-- Sin blur en fondo para esta página -->
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'app/css/sesion.css' %}">
+<style>
+/* Ampliamos el contenedor visualmente */
+.wrapper {
+    width: 700px;
+    padding: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    margin: 40px auto;
+    color: white;
+}
+
+/* Asegura que textarea se vea como el resto */
+.input-box textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    color: white;
+    font-size: 14px;
+    outline: none;
+    resize: vertical;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+}
+
+.input-box textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+</style>
+{% endblock %}
+
+{% block contenido %}
+<div class="wrapper">
+    <form method="post" id="formulario_contacto">
+        {% csrf_token %}
+
+        <h1 style="text-align: center;">Solicitud de Servicio</h1>
+
+        {% if messages %}
+            {% for message in messages %}
+                <p style="text-align: center; color:
+                    {% if message.tags == 'error' %}
+                        red
+                    {% elif message.tags == 'success' %}
+                        limegreen
+                    {% else %}
+                        black
+                    {% endif %}
+                ">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <div class="input-box">
+            <input type="text" name="nombre" value="{{ usuario.first_name }} {{ usuario.last_name }}" readonly>
+        </div>
+
+        <div class="input-box">
+            <input type="email" name="email" value="{{ usuario.email }}" readonly>
+        </div>
+
+        <div class="input-box">
+            <input type="text" name="servicio" value="{{ servicio.nombre }}" readonly>
+        </div>
+
+        <div class="input-box">
+            <textarea name="mensaje" rows="3" placeholder="Describe tu necesidad con detalle..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn">Enviar Solicitud</button>
+    </form>
+</div>
+{% endblock %}
