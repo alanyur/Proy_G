@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from collections import defaultdict
 from .models import Disponibilidad
 
-User = get_user_model()  # ahora usas tu modelo Usuario
+User = get_user_model()
 
 def home(request):
     servicios = Servicio.objects.all()
@@ -89,7 +89,7 @@ def user_login(request):
 
 def cerrar_sesion(request):
     logout(request)
-    return redirect('sesion')  # redirige a la vista de login
+    return redirect('sesion')
 
 
 def registro_succes(request):
