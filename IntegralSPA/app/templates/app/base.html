@@ -37,6 +37,15 @@
         {% else %}
             <li><a href="{% url 'sesion' %}">Inicia sesión</a></li>
         {% endif %}
+    
+        {% if request.user.is_authenticated %}
+            {% if request.user.rol == 'admin' %}
+            <li><a href="{% url 'edit' %}">Apartado admin</a></li>
+            {% endif %}
+        {% endif %}
+
+
+
     </ul>
 </nav>
 

@@ -134,3 +134,18 @@ def registro_succes(request):
 
     return render(request, 'app/registro.html')
 
+def edit(request):
+    if request.method == 'POST':
+        if 'eliminar' in request.POST:
+            solicitud_id = request.POST['eliminar']
+            Solicitud.objects.filter(id=solicitud_id).delete()
+        elif 'marcar_listo' in request.POST:
+            solicitud_id = request.POST['marcar_listo']
+            solicitud = Solicitud.objects.get(id=solicitud_id)
+            if solicitud.estado == 'pendiente':
+                solicitud.estado = 'listo'
+                solicitud.save()
+        return redirect('edit')
+
+    solicitudes = Solicitud.objects.all()
+    return render(request, 'app/edit.html', {'solicitudes': solicitudes})

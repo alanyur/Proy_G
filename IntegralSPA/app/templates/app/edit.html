@@ -1,0 +1,89 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block css %}
+<style>
+    .tabla-blanca {
+        width: 80%;
+        margin: 40px auto;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+        background-color: white;
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .tabla-blanca th,
+    .tabla-blanca td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .tabla-blanca th {
+        background-color: #f5f5f5;
+        font-weight: bold;
+    }
+
+    .tabla-blanca tr:nth-child(even) {
+        background-color: #fafafa;
+    }
+
+    .tabla-blanca button {
+        padding: 5px 10px;
+        border: none;
+        background-color: #4287f5;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 5px;
+    }
+
+    .tabla-blanca button:hover {
+        background-color: #2f69d6;
+    }
+
+    .tabla-blanca .listo {
+        background-color: #4caf50;
+    }
+
+    .tabla-blanca .listo:hover {
+        background-color: #3e9442;
+    }
+</style>
+{% endblock %}
+{% block contenido %}
+<h2 class="titulo-blanco">Tabla de Peticiones</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <table class="tabla-blanca">
+        <thead>
+            <tr>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for solicitud in solicitudes %}
+            <tr>
+                <td>{{ solicitud.descripcion }}</td>
+                <td>{{ solicitud.estado }}</td>
+                <td>{{ solicitud.fecha }}</td>
+                <td>{{ solicitud.cliente.username }}</td>
+                <td>
+                    {% if solicitud.estado != 'listo' %}
+                        <button type="submit" name="marcar_listo" value="{{ solicitud.id }}">Listo</button>
+                    {% else %}
+                        <span style="color: green; font-weight: bold;">✔ Listo</span>
+                    {% endif %}
+                    <button type="submit" name="eliminar" value="{{ solicitud.id }}" onclick="return confirm('¿Eliminar esta solicitud?');">Eliminar</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</form>
+{% endblock %}
